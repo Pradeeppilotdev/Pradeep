@@ -6,7 +6,7 @@ import gsap from 'gsap'
 const projects = [
   {
     index: '01',
-    name: 'ArcProof',
+    name: 'ArcZK',
     context: 'Live · Arc testnet',
     isLive: true,
     desc: "A ZK-gated USDC escrow protocol on Circle's Arc testnet. Work is verified with a Groth16 proof before funds settle — no trusted third party checking the output.",
