@@ -178,11 +178,12 @@ nav .inner{ display:flex; align-items:center; justify-content:space-between; }
 
 /* ---------- CONTACT ---------- */
 .contact{ padding:60px 0 84px; }
+.contact .mask{ overflow:visible; }
 .contact-big{
-  font-size:clamp(32px, 5vw, 56px); font-weight:700; letter-spacing:-0.02em;
+  font-size:clamp(22px, 5vw, 56px); font-weight:700; letter-spacing:-0.02em;
   display:inline-block; border-bottom:2px solid var(--line);
   transition:border-color .3s ease, color .3s ease;
-  padding-bottom:4px;
+  padding-bottom:4px; overflow-wrap:break-word;
 }
 .contact-big:hover{ border-color:var(--accent); color:var(--accent); }
 .contact-sub{ margin-top:16px; font-size:14px; color:var(--muted); max-width:48ch; }
@@ -196,4 +197,20 @@ nav .inner{ display:flex; align-items:center; justify-content:space-between; }
   margin-top:56px; padding-top:20px; border-top:1px solid var(--line);
   font-family:var(--font-mono); font-size:11px; color:var(--muted);
   display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:768px){
+  .wrap{ padding:0 20px; }
+  .meta-row{ font-size:11px; gap:5px; }
+  .statement{ max-width:100%; }
+  .work-head{ padding:22px 0; gap:12px; }
+  .work-name{ font-size:clamp(18px, 5vw, 24px); }
+  .work-context{ white-space:normal; }
+  .work-body-inner{ padding-bottom:24px; }
+  .contact-big{ font-size:clamp(18px, 5.5vw, 32px); }
+  .contact-sub{ font-size:13px; }
+  .about p{ font-size:14px; }
+  .intro-links{ gap:14px; font-size:12px; }
+  .nav-links{ gap:14px; }
 }

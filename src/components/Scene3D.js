@@ -1,9 +1,10 @@
 'use client'
 
+import { memo } from 'react'
 import { Canvas } from '@react-three/fiber'
 import SceneContent from './SceneContent'
 
-export default function Scene3D() {
+function Scene3D() {
   return (
     <div style={{
       position: 'fixed',
@@ -15,9 +16,12 @@ export default function Scene3D() {
         camera={{ position: [0, 0, 5], fov: 60 }}
         gl={{ alpha: true, antialias: true }}
         style={{ width: '100%', height: '100%' }}
+        resize={{ scroll: false }}
       >
         <SceneContent />
       </Canvas>
     </div>
   )
 }
+
+export default memo(Scene3D)

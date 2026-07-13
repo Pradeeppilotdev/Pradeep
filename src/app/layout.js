@@ -40,9 +40,9 @@ export default function RootLayout({ children }) {
         </Script>
       </head>
       <body>
+        <Scene3D />
         <ThemeProvider>
           <SmoothScroll>
-            <Scene3D />
             <div style={{ position: 'relative', zIndex: 1 }}>
               <Navbar />
               <ScrollAnimator />
