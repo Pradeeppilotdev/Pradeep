@@ -6,11 +6,14 @@ import { useFrame } from '@react-three/fiber'
 function TorusKnot({ radius = 0.3, tube = 0.1, position: pos }) {
   const mesh = useRef()
   const basePos = useMemo(() => pos, [])
+  const isTouch = useRef(
+    typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
+  )
 
   useFrame(({ clock, pointer }) => {
     if (!mesh.current) return
     const t = clock.getElapsedTime()
-    mesh.current.position.x = basePos[0] + pointer.x * 0.3
+    mesh.current.position.x = basePos[0] + (!isTouch.current ? pointer.x * 0.3 : 0)
     mesh.current.position.y = basePos[1] + Math.sin(t * 0.2) * 0.2
     mesh.current.rotation.x = t * 0.08
     mesh.current.rotation.y = t * 0.1
