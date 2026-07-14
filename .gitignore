@@ -33,6 +33,13 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# large source images
+public/Oppenheimer Movie 4k Wallpaper iPhone HD Phone 4781l.jpg
+
+# duplicate portfolio copies
+pradeep-portfolio-updated/
+pradeep-portfolio-updated (1)/
+
 # vercel
 .vercel
 
