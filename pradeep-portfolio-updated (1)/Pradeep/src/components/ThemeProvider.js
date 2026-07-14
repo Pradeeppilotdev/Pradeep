@@ -9,11 +9,17 @@ export function useTheme() {
 }
 
 export default function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState('light')
+  // The inline blocking script in layout.js already applied the correct
+  // class to <html> before hydration, so read it back instead of defaulting
+  // to 'light' and flipping after mount (which caused a flash of light theme).
+  const [theme, setTheme] = useState(() =>
+    typeof document !== 'undefined' && document.documentElement.classList.contains('dark')
+      ? 'dark'
+      : 'light'
+  )
 
   useEffect(() => {
-    const isDark = document.documentElement.classList.contains('dark')
-    setTheme(isDark ? 'dark' : 'light')
+    document.documentElement.classList.toggle('dark', theme === 'dark')
   }, [])
 
   function toggleTheme() {

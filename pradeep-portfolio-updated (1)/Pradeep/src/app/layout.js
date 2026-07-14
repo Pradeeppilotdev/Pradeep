@@ -1,4 +1,5 @@
 import { Inter, JetBrains_Mono } from 'next/font/google'
+import Script from 'next/script'
 import ThemeProvider from '@/components/ThemeProvider'
 import SmoothScroll from '@/components/SmoothScroll'
 import Navbar from '@/components/Navbar'
@@ -35,9 +36,9 @@ export const metadata = {
   creator: 'Chandrapradeep R',
   alternates: { canonical: siteUrl },
   icons: {
-    icon: '/favicon.png',
-    shortcut: '/favicon.png',
-    apple: '/favicon.png',
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
   },
   openGraph: {
     title,
@@ -60,10 +61,24 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{
-          __html: `(function(){try{const w=console.warn;console.warn=function(){if(arguments[0]&&typeof arguments[0]==='string'&&arguments[0].includes('THREE.Clock'))return;w.apply(console,arguments)}}catch(e){}})();try{const t=localStorage.getItem('theme');const th=t||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');if(th==='dark')document.documentElement.classList.add('dark')}catch(e){}
-          `,
-        }} />
+        <Script id="suppress-clock-warning" strategy="beforeInteractive">
+          {`
+          const warn = console.warn;
+          console.warn = function() {
+            if (arguments[0] && typeof arguments[0] === 'string' && arguments[0].includes('THREE.Clock')) return;
+            warn.apply(console, arguments);
+          };
+          `}
+        </Script>
+        <Script id="set-initial-theme" strategy="beforeInteractive">
+          {`
+          try {
+            const saved = localStorage.getItem('theme');
+            const theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            if (theme === 'dark') document.documentElement.classList.add('dark');
+          } catch (e) {}
+          `}
+        </Script>
       </head>
       <body>
         <ThemeProvider>

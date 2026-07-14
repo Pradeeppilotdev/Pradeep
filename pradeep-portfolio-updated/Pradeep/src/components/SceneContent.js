@@ -3,6 +3,7 @@
 import { useRef, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useTheme } from './ThemeProvider'
+import { getVelocity } from '@/lib/scrollStore'
 
 const ACCENT = { light: '#3E7A4F', dark: '#5FCB7C' }
 
@@ -12,14 +13,20 @@ function TorusKnot({ radius = 0.3, tube = 0.1, position: pos, color }) {
   const isTouch = useRef(
     typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
   )
+  const spin = useRef(0)
 
   useFrame(({ clock, pointer }) => {
     if (!mesh.current) return
     const t = clock.getElapsedTime()
+    // Scroll speed gives the knots a little extra spin as you move through
+    // the page, instead of sitting there as static wallpaper.
+    const boost = Math.min(Math.abs(getVelocity()) * 0.015, 0.6)
+    spin.current += 0.01 + boost
+
     mesh.current.position.x = basePos[0] + (!isTouch.current ? pointer.x * 0.3 : 0)
     mesh.current.position.y = basePos[1] + Math.sin(t * 0.2) * 0.2
-    mesh.current.rotation.x = t * 0.12
-    mesh.current.rotation.y = t * 0.15
+    mesh.current.rotation.x = spin.current * 0.4
+    mesh.current.rotation.y = spin.current * 0.5
   })
 
   return (

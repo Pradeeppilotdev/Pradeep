@@ -1,7 +1,6 @@
 'use client'
 
 import { useRef, useCallback } from 'react'
-import { motion } from 'framer-motion'
 import gsap from 'gsap'
 
 const projects = [
@@ -20,21 +19,18 @@ const projects = [
   },
   {
     index: '02',
-    name: 'OnChain Roamers',
-    context: 'Side project · IoT + Hyperledger',
-    desc: 'A Hyperledger Fabric network wired to ESP32 IoT hardware — devices report status on-chain via a webhook pipeline, and payments release automatically once conditions are verified, no manual settlement step.',
-    highlight: 'ESP32 devices push signed status updates through a webhook layer into a permissioned Hyperledger Fabric ledger deployed on Azure, with a chaincode-triggered payment release once each checkpoint is confirmed on-chain.',
-    tags: ['Hyperledger Fabric', 'ESP32 / IoT', 'Azure', 'Webhooks'],
-    links: [
-      { label: 'Live app', url: 'https://onchainroamers.tech' },
-    ],
+    name: 'ProofAlpha',
+    context: '0G APAC Hackathon',
+    desc: 'A verifiable on-chain wallet-coordination detector. Evidence bundles are stored on 0G Storage and coordination proofs are submitted on-chain, so a fraud claim is checkable, not just an opinion.',
+    highlight: 'Deployed CoordinationRegistry.sol on 0G Galileo testnet; 300+ testnet proofs combining real Storage uploads with on-chain submissions.',
+    tags: ['Solidity', '0G Storage', 'BFS traversal'],
+    links: [],
   },
   {
     index: '03',
     name: 'GhostNet',
     context: '2nd place · Nansen CLI',
     desc: 'A cross-market smart-money coordination detector — traces wallet clusters moving in sync across Hyperliquid perps, then pushes real-time alerts to Telegram.',
-    highlight: 'BFS traversal across wallet clusters flags synchronized moves across Hyperliquid perps, cross-referenced against Nansen smart-money labels, with alerts pushed to Telegram in real time.',
     tags: ['Hyperliquid API', 'Nansen labels', 'Telegram bot'],
     links: [
       { label: 'Live app', url: 'https://ghostnetai.xyz' },
@@ -53,44 +49,25 @@ const projects = [
   },
   {
     index: '05',
-    name: 'ProofAlpha',
-    context: '0G APAC Hackathon',
-    desc: 'A verifiable on-chain wallet-coordination detector. Evidence bundles are stored on 0G Storage and coordination proofs are submitted on-chain, so a fraud claim is checkable, not just an opinion.',
-    highlight: 'Deployed CoordinationRegistry.sol on 0G Galileo testnet; 300+ testnet proofs combining real Storage uploads with on-chain submissions.',
-    tags: ['Solidity', '0G Storage', 'BFS traversal'],
-    links: [
-      { label: 'Source', url: 'https://github.com/Pradeeppilotdev/ProofAlpha' },
-    ],
+    name: 'Agent Bounty Board',
+    context: 'Monad Blitz Bangalore',
+    desc: 'Agents post, claim, complete, and get paid for bounties on their own using the x402 payment protocol, with on-chain proof of completion — no human in the loop for settlement.',
+    tags: ['x402 protocol', 'Autonomous agents'],
+    links: [],
   },
   {
     index: '06',
-    name: 'Base Deployer',
+    name: 'One-Tap Deployer',
     context: 'Side project · Base',
     desc: 'Deploy a smart contract to Base in a single tap, then track its wallet health from the same dashboard — built to strip friction out of shipping on-chain.',
     tags: ['Base (L2)', 'Solidity'],
     links: [
       { label: 'Live app', url: 'https://base-one-tap-contract-deployer.vercel.app' },
-      { label: 'Source', url: 'https://github.com/Pradeeppilotdev/base-one-tap-contract-deployer' },
     ],
   },
 ]
 
 const FEATURED_COUNT = 3
-
-function ProjectLogo({ name }) {
-  if (name === 'ArcZK') {
-    return (
-      <svg className="project-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
-        <path d="M3 20C3 9 7 4 12 4S21 9 21 20" />
-        <path d="M8 20C8 13 10 9.5 12 9.5S16 13 16 20" />
-      </svg>
-    )
-  }
-  if (name === 'Base Deployer') {
-    return <img className="project-logo" src="/basedeployer.svg" alt="" />
-  }
-  return null
-}
 
 function ProjectLinks({ links }) {
   if (links.length > 0) {
@@ -107,7 +84,7 @@ function ProjectLinks({ links }) {
 
 function FeaturedCard({ p }) {
   return (
-    <motion.div className="feat-card" whileHover={{ y: -3 }} transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}>
+    <div className="feat-card">
       <div className="feat-card-top">
         <span className="feat-index">{p.index}</span>
         <span className={`work-context${p.isLive ? ' work-status live' : ''}`}>
@@ -115,17 +92,14 @@ function FeaturedCard({ p }) {
           {p.context}
         </span>
       </div>
-      <h3 className="feat-name">
-        {p.name}
-        <ProjectLogo name={p.name} />
-      </h3>
+      <h3 className="feat-name">{p.name}</h3>
       <p className="work-desc">{p.desc}</p>
       {p.highlight && <div className="work-highlight">{p.highlight}</div>}
       <div className="work-tags">
         {p.tags.map(tag => <span key={tag}>{tag}</span>)}
       </div>
       <ProjectLinks links={p.links} />
-    </motion.div>
+    </div>
   )
 }
 
@@ -187,10 +161,7 @@ export default function WorkSection() {
             >
               <span className="work-index">{p.index}</span>
               <span className="work-main">
-                <span className="work-name">
-                  {p.name}
-                  <ProjectLogo name={p.name} />
-                </span>
+                <span className="work-name">{p.name}</span>
                 <span className={`work-context${p.isLive ? ' work-status live' : ''}`}>
                   {p.isLive && <span className="dot"></span>}
                   {p.context}
