@@ -29,6 +29,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            (function(){
+              var t = localStorage.getItem('theme');
+              if (!t) t = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+              if (t === 'dark') document.documentElement.classList.add('dark');
+            })();
+          `
+        }} />
         <Script id="suppress-clock-warning" strategy="beforeInteractive">
           {`
           const warn = console.warn;
