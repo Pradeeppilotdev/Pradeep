@@ -10,7 +10,7 @@ export default function AboutSection() {
           That throughline started with detection systems that had to prove their own findings — GhostNet tracing wallet coordination, ProofAlpha anchoring evidence on-chain instead of just asserting it — and led to ArcZK, where the verification isn&apos;t a side feature anymore, it&apos;s the entire settlement mechanism.
         </p>
         <p>
-          I&apos;ve shipped across five hackathons in the last year and picked up a merged pull request into <strong>Leaflet.js</strong>. I&apos;m reaching out directly to teams building at the intersection of cryptography, agents, and infrastructure — because that&apos;s the work I actually want to be doing.
+          I&apos;ve shipped across eight hackathons in the last year and picked up a merged pull request into <strong>Leaflet.js</strong>. I&apos;m reaching out directly to teams building at the intersection of cryptography, agents, and infrastructure — because that&apos;s the work I actually want to be doing.
         </p>
         <div className="about-stats">
           <div><strong>15</strong><span>shipped projects</span></div>
