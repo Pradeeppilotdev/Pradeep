@@ -1,7 +1,10 @@
+import CountUp from '@/components/CountUp'
+import ShinyText from '@/components/ShinyText'
+
 export default function AboutSection() {
   return (
     <div className="wrap" id="about">
-      <div className="section-label">About</div>
+      <div className="section-label"><ShinyText text="About" speed={2.5} color="var(--muted)" shineColor="var(--ink)" /></div>
       <div className="about">
         <p>
           I&apos;m Chandrapradeep R, a final-year CS engineering student and a <strong>GDG on Campus</strong> organizer. Most of what I build sits where <strong>zero-knowledge proofs</strong>, <strong>on-chain agents</strong>, and applied <strong>AI</strong> meet — systems where trust doesn&apos;t have to be taken on faith, it can be checked.
@@ -13,9 +16,9 @@ export default function AboutSection() {
           I&apos;ve shipped across eight hackathons in the last year and picked up a merged pull request into <strong>Leaflet.js</strong>. I&apos;m reaching out directly to teams building at the intersection of cryptography, agents, and infrastructure — because that&apos;s the work I actually want to be doing.
         </p>
         <div className="about-stats">
-          <div><strong>15</strong><span>shipped projects</span></div>
-          <div><strong>12</strong><span>hackathons</span></div>
-          <div><strong>1</strong><span>merged OSS PR</span></div>
+          <div><CountUp to={15} duration={1.6} className="stat-num" /><span>shipped projects</span></div>
+          <div><CountUp to={12} duration={1.6} delay={0.15} className="stat-num" /><span>hackathons</span></div>
+          <div><CountUp to={1} duration={1.6} delay={0.3} className="stat-num" /><span>merged OSS PR</span></div>
         </div>
         <div className="stack-row">
           <span>Solidity</span><span>Circom</span><span>snarkjs</span><span>wagmi</span>

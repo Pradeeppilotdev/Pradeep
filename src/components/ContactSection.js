@@ -1,7 +1,9 @@
+import ShinyText from '@/components/ShinyText'
+
 export default function ContactSection() {
   return (
     <div className="wrap" id="contact">
-      <div className="section-label">Contact</div>
+      <div className="section-label"><ShinyText text="Contact" speed={2.5} color="var(--muted)" shineColor="var(--ink)" /></div>
       <div className="contact">
         <span className="mask"><span className="mask-inner"><a className="contact-big" href="mailto:chandrapradeepr@gmail.com">chandrapradeepr@gmail.com</a></span></span>
         <p className="contact-sub">Open to AI / Blockchain engineering roles — remote or anywhere in India.</p>
@@ -12,7 +14,6 @@ export default function ContactSection() {
         </div>
         <div className="footer-note">
           <span>© 2026 Chandrapradeep R.</span>
-          <span>India</span>
         </div>
       </div>
     </div>

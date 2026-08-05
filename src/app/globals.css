@@ -86,6 +86,13 @@ nav .inner{ display:flex; align-items:center; justify-content:space-between; }
 }
 .statement .accent-word{ color:var(--accent); }
 
+.statement-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(24px, 5vw, 80px);
+  align-items:center;
+}
+
 .intro-links{
   margin-top:32px; display:flex; gap:22px; flex-wrap:wrap;
   font-family:var(--font-mono); font-size:12.5px;
@@ -95,6 +102,12 @@ nav .inner{ display:flex; align-items:center; justify-content:space-between; }
   transition:border-color .2s ease, color .2s ease;
 }
 .intro-links a:hover{ border-color:var(--ink); color:var(--accent); }
+
+.hero-name{
+  margin-top:0;
+  width:100%;
+  overflow:visible;
+}
 
 /* ---------- SECTION LABEL ---------- */
 .section-label{
@@ -247,6 +260,52 @@ html.dark .project-logo[src*="basedeployer"]{ filter:invert(0); }
   display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
 }
 
+/* ---------- REACT BITS: PARTICLE TEXT ---------- */
+.particle-text{
+  position:relative; display:block; width:100%;
+  overflow:hidden; touch-action:none; isolation:isolate;
+}
+.particle-text__canvas{
+  position:absolute; inset:0; display:block; width:100%; height:100%;
+}
+.particle-text__sr{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+/* ---------- REACT BITS: WARP TEXT ---------- */
+.warp-text{
+  position:relative; display:block; width:100%;
+  min-height:220px; overflow:hidden; isolation:isolate; border-radius:inherit;
+}
+.warp-text canvas{
+  position:absolute; inset:0; width:100%; height:100%; display:block;
+}
+.warp-text.hero-name{ min-height:0; }
+
+/* ---------- REACT BITS: ROTATING TEXT ---------- */
+.text-rotate{
+  display:flex; flex-wrap:wrap; white-space:pre-wrap; position:relative;
+}
+.meta-rotate{ color:var(--ink); font-weight:500; }
+.text-rotate-sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+.text-rotate-word{ display:inline-flex; }
+.text-rotate-lines{ display:flex; flex-direction:column; width:100%; }
+.text-rotate-element{ display:inline-block; }
+.text-rotate-space{ white-space:pre; }
+
+/* ---------- REACT BITS: SHINY TEXT ---------- */
+.shiny-text{ display:inline-block; }
+
+/* ---------- REACT BITS: COUNT UP ---------- */
+.about-stats .stat-num{
+  font-size:26px; font-weight:700; letter-spacing:-0.01em; color:var(--ink);
+  font-family:var(--font-body); text-transform:none;
+}
+
 /* ---------- MOBILE ---------- */
 @media (max-width:768px){
   .wrap{ padding:0 20px; }
@@ -260,6 +319,8 @@ html.dark .project-logo[src*="basedeployer"]{ filter:invert(0); }
   .contact-sub{ font-size:13px; }
   .about p{ font-size:14px; }
   .intro-links{ gap:14px; font-size:12px; }
+  .hero-name{ margin-top:36px; }
+  .statement-row{ grid-template-columns:1fr; }
   .nav-links{ gap:14px; }
 }
 @media (hover:none) and (pointer:coarse){

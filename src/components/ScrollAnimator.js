@@ -56,8 +56,8 @@ export default function ScrollAnimator() {
 
     // Featured project cards
     gsap.utils.toArray('.feat-card').forEach((card, i) => {
-      gsap.fromTo(card, { opacity: 0, y: 24 }, {
-        opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: i * 0.08,
+      gsap.fromTo(card, { opacity: 0 }, {
+        opacity: 1, duration: 0.7, ease: 'power2.out', delay: i * 0.08,
         scrollTrigger: { trigger: card, start: 'top 90%', once: true }
       })
     })

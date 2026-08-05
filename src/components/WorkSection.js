@@ -1,8 +1,9 @@
 'use client'
 
 import { useRef, useCallback } from 'react'
-import { motion } from 'framer-motion'
 import gsap from 'gsap'
+import TiltCard from '@/components/TiltCard'
+import ShinyText from '@/components/ShinyText'
 
 const projects = [
   {
@@ -107,7 +108,7 @@ function ProjectLinks({ links }) {
 
 function FeaturedCard({ p }) {
   return (
-    <motion.div className="feat-card" whileHover={{ y: -3 }} transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}>
+    <TiltCard className="feat-card">
       <div className="feat-card-top">
         <span className="feat-index">{p.index}</span>
         <span className={`work-context${p.isLive ? ' work-status live' : ''}`}>
@@ -125,7 +126,7 @@ function FeaturedCard({ p }) {
         {p.tags.map(tag => <span key={tag}>{tag}</span>)}
       </div>
       <ProjectLinks links={p.links} />
-    </motion.div>
+    </TiltCard>
   )
 }
 
@@ -170,13 +171,13 @@ export default function WorkSection() {
 
   return (
     <div className="wrap" id="work">
-      <div className="section-label">Work</div>
+      <div className="section-label"><ShinyText text="Work" speed={2.5} color="var(--muted)" shineColor="var(--ink)" /></div>
 
       <div className="feat-grid">
         {featured.map(p => <FeaturedCard key={p.index} p={p} />)}
       </div>
 
-      <div className="section-label secondary">More builds</div>
+      <div className="section-label secondary"><ShinyText text="More builds" speed={2.5} color="var(--muted)" shineColor="var(--ink)" /></div>
       <div className="work-list">
         {rest.map((p, i) => (
           <div className="work-item" key={p.index} ref={el => itemsRef.current[i] = el}>

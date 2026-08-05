@@ -24,7 +24,7 @@ function TorusKnot({ radius = 0.3, tube = 0.1, position: pos, color }) {
 
   return (
     <mesh ref={mesh} position={basePos}>
-      <torusKnotGeometry args={[radius, tube, 64, 8]} />
+      <torusKnotGeometry args={[radius, tube, 128, 16]} />
       <meshStandardMaterial
         color={color}
         wireframe
@@ -41,9 +41,7 @@ export default function SceneContent() {
 
   return (
     <group>
-      <TorusKnot radius={0.5} tube={0.15} position={[0, 0, -4]} color={color} />
-      <TorusKnot radius={0.2} tube={0.07} position={[-5, -4, -6]} color={color} />
-      <TorusKnot radius={0.2} tube={0.07} position={[5, 3, -8]} color={color} />
+      <TorusKnot radius={0.8} tube={0.24} position={[0, 0, -4]} color={color} />
       <ambientLight intensity={0.5} />
       <directionalLight position={[2, 3, 4]} intensity={0.8} />
     </group>
