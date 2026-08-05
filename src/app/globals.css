@@ -95,7 +95,7 @@ nav .inner{ display:flex; align-items:center; justify-content:space-between; }
 
 .intro-links{
   margin-top:32px; display:flex; gap:22px; flex-wrap:wrap;
-  font-family:var(--font-mono); font-size:12.5px;
+  font-family:var(--font-mono); font-size:12.5px; align-items:center;
 }
 .intro-links a{
   border-bottom:1px solid var(--line); padding-bottom:2px;
@@ -103,16 +103,47 @@ nav .inner{ display:flex; align-items:center; justify-content:space-between; }
 }
 .intro-links a:hover{ border-color:var(--ink); color:var(--accent); }
 
+.view-work{
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:var(--font-mono); font-size:13px; color:var(--accent);
+  border-bottom:1px solid var(--accent); padding-bottom:2px;
+  transition:opacity .2s ease;
+}
+.view-work .arrow{ line-height:0; transition:transform .2s ease; }
+.view-work:hover{ opacity:.7; }
+.view-work:hover .arrow{ transform:translateX(3px); }
+
 .hero-name{
   margin-top:0;
   width:100%;
   overflow:visible;
 }
 
+/* ---------- CONTRIBUTION GRAPH ---------- */
+.cg{ max-width:100%; }
+.cg-head{
+  display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:14px;
+  font-family:var(--font-mono); font-size:12px; color:var(--muted);
+}
+.cg-src{ opacity:.55; margin-left:6px; }
+.cg-grid{ display:flex; gap:3px; overflow-x:auto; padding-bottom:6px; }
+.cg-col{
+  display:flex; flex-direction:column; gap:3px;
+  opacity:0; transform:translateY(6px);
+  transition:opacity .5s var(--ease), transform .5s var(--ease);
+}
+.cg.is-in .cg-col{ opacity:1; transform:none; }
+.cg-cell{ width:11px; height:11px; border-radius:2px; flex-shrink:0; transition:transform .15s ease; }
+.cg-cell:hover{ transform:scale(1.35); }
+@media (max-width:768px){
+  .cg-cell{ width:7px; height:7px; }
+  .cg-col, .cg-grid{ gap:2px; }
+}
+
 /* ---------- SECTION LABEL ---------- */
 .section-label{
-  font-family:var(--font-mono); font-size:11px; color:var(--muted);
-  text-transform:uppercase; letter-spacing:0.08em;
+  font-family:var(--font-mono); font-size:11px; color:var(--muted);  text-transform:uppercase; letter-spacing:0.08em;
   padding:14px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
 }
 

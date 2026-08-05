@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import { useLenis } from 'lenis/react'
 import ParticleText from '@/components/ParticleText'
 import RotatingText from '@/components/RotatingText'
 import { useTheme } from '@/components/ThemeProvider'
@@ -13,8 +14,21 @@ const PARTICLE_COLORS = {
 
 export default function Hero() {
   const tlRef = useRef(null)
+  const lenis = useLenis()
   const { theme } = useTheme()
   const particleColors = PARTICLE_COLORS[theme] || PARTICLE_COLORS.light
+
+  function smoothTo(e, id) {
+    e.preventDefault()
+    const target = document.getElementById(id)
+    if (!target) return
+    if (lenis) {
+      lenis.scrollTo(target, { offset: -70 })
+    } else {
+      const y = target.getBoundingClientRect().top + window.scrollY - 70
+      window.scrollTo({ top: y, behavior: 'smooth' })
+    }
+  }
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -86,6 +100,9 @@ export default function Hero() {
           />
         </div>
         <div className="intro-links">
+          <a className="view-work" href="#work" onClick={e => smoothTo(e, 'work')}>
+            View my work<span className="arrow">&rarr;</span>
+          </a>
           <a href="mailto:chandrapradeepr@gmail.com">Email</a>
           <a href="https://github.com/Pradeeppilotdev" target="_blank" rel="noopener">GitHub</a>
           <a href="https://x.com/pradeeppilot2k5" target="_blank" rel="noopener">X</a>
