@@ -3,7 +3,7 @@ import ThemeProvider from '@/components/ThemeProvider'
 import SmoothScroll from '@/components/SmoothScroll'
 import Navbar from '@/components/Navbar'
 import ScrollAnimator from '@/components/ScrollAnimator'
-import Scene3D from '@/components/Scene3D'
+import CelestialBackground from '@/components/CelestialBackground'
 import './globals.css'
 
 const inter = Inter({
@@ -67,7 +67,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <ThemeProvider>
-          <Scene3D />
+          <CelestialBackground />
           <SmoothScroll>
             <div style={{ position: 'relative', zIndex: 1 }}>
               <Navbar />
