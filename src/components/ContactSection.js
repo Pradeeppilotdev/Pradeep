@@ -13,7 +13,7 @@ export default function ContactSection() {
           <a href="https://t.me/pradeeppilot" target="_blank" rel="noopener">Telegram ↗</a>
         </div>
         <div className="footer-note">
-          <span>© 2026 Chandrapradeep N.</span>
+          <span>© 2026 Chandrapradeep.</span>
         </div>
       </div>
     </div>
