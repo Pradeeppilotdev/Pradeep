@@ -63,9 +63,9 @@ export default function Hero() {
     <div className="wrap">
       <div className="intro">
         <div className="meta-row">
-          <span className="avail"><span className="dot"></span>Available now</span>
-          <span className="sep">·</span>
-          <span>Final-year CS Engineer</span>
+          {/* <span className="avail"><span className="dot"></span>Available now</span>
+          <span className="sep">·</span> */}
+          <span>CS Grad</span>
           <span className="sep">·</span>
           <RotatingText
             texts={['Web3 + Agentic AI', 'ZK proofs', 'On-chain agents', 'Solidity']}
