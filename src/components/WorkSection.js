@@ -4,6 +4,8 @@ import { useRef, useCallback } from 'react'
 import gsap from 'gsap'
 import TiltCard from '@/components/TiltCard'
 import ShinyText from '@/components/ShinyText'
+import ArcZKDemo from '@/components/ArcZKDemo'
+import MediaGallery from '@/components/MediaGallery'
 
 const projects = [
   {
@@ -11,6 +13,7 @@ const projects = [
     name: 'ArcZK',
     context: 'Live · Arc testnet',
     isLive: true,
+    media: { poster: '/arczk-preview.png', video: '/arczkscreenrecord.mp4' },
     desc: "A ZK-gated USDC escrow protocol on Circle's Arc testnet. Work is verified with a Groth16 proof before funds settle — no trusted third party checking the output.",
     highlight: '4 Solidity contracts + a Circom circuit with Poseidon hashing, proved entirely in-browser via snarkjs.',
     tags: ['Solidity', 'Circom / ZK-SNARKs', 'snarkjs', 'React · wagmi'],
@@ -23,6 +26,14 @@ const projects = [
     index: '02',
     name: 'OnChain Roamers',
     context: 'Side project · IoT + Hyperledger',
+    media: {
+      images: [
+        '/onchainroamers0.jpeg',
+        '/onchainroamers1.jpeg',
+        '/onchainroamers2.jpeg',
+        '/onchainroamers3.jpeg',
+      ],
+    },
     desc: 'A Hyperledger Fabric network wired to ESP32 IoT hardware — devices report status on-chain via a webhook pipeline, and payments release automatically once conditions are verified, no manual settlement step.',
     highlight: 'ESP32 devices push signed status updates through a webhook layer into a permissioned Hyperledger Fabric ledger deployed on Azure, with a chaincode-triggered payment release once each checkpoint is confirmed on-chain.',
     tags: ['Hyperledger Fabric', 'ESP32 / IoT', 'Azure', 'Webhooks'],
@@ -34,6 +45,9 @@ const projects = [
     index: '03',
     name: 'GhostNet',
     context: '2nd place · Nansen CLI',
+    media: {
+      images: ['/ghostnetai.jpeg', '/ghostnetai1.jpeg', '/ghostnetai2.jpeg'],
+    },
     desc: 'A cross-market smart-money coordination detector — traces wallet clusters moving in sync across Hyperliquid perps, then pushes real-time alerts to Telegram.',
     highlight: 'BFS traversal across wallet clusters flags synchronized moves across Hyperliquid perps, cross-referenced against Nansen smart-money labels, with alerts pushed to Telegram in real time.',
     tags: ['Hyperliquid API', 'Nansen labels', 'Telegram bot'],
@@ -116,6 +130,8 @@ function FeaturedCard({ p }) {
           {p.context}
         </span>
       </div>
+      {p.media && p.media.video && <ArcZKDemo />}
+      {p.media && p.media.images && <MediaGallery images={p.media.images} />}
       <h3 className="feat-name">
         {p.name}
         <ProjectLogo name={p.name} />
