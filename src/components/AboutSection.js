@@ -7,7 +7,7 @@ export default function AboutSection() {
       <div className="section-label"><ShinyText text="About" speed={2.5} color="var(--muted)" shineColor="var(--ink)" /></div>
       <div className="about">
         <p>
-          I&apos;m Chandrapradeep R, a final-year CS engineering student and a <strong>GDG on Campus</strong> organizer. Most of what I build sits where <strong>zero-knowledge proofs</strong>, <strong>on-chain agents</strong>, and applied <strong>AI</strong> meet — systems where trust doesn&apos;t have to be taken on faith, it can be checked.
+          I&apos;m Chandrapradeep R, a final-year CS engineering student and a <strong>GDG on Campus</strong> organizer. Most of what I build sits where <strong>zero-knowledge proofs</strong>, <strong>on-chain agents</strong>, and applied <strong>AI </strong> meet — systems where trust doesn&apos;t have to be taken on faith, it can be checked.
         </p>
         <p>
           That throughline started with detection systems that had to prove their own findings — GhostNet tracing wallet coordination, ProofAlpha anchoring evidence on-chain instead of just asserting it — and led to ArcZK, where the verification isn&apos;t a side feature anymore, it&apos;s the entire settlement mechanism.
