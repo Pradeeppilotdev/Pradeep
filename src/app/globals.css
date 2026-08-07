@@ -450,6 +450,29 @@ html.dark .project-logo[src*="basedeployer"]{ filter:invert(0); }
   .stack-row span{ font-size:12px; padding:6px 10px; }
   .carousel, .arc-demo{ margin-bottom:14px; }
 }
-@media (hover:none) and (pointer:coarse){
+@media (hover:none), (pointer:coarse){
   .work-main{ flex-direction:column; align-items:flex-start; gap:4px; }
+}
+
+/* Reset sticky hover states on touch devices */
+@media (hover:none), (pointer:coarse){
+  .nav-links a:hover{ color:var(--muted); }
+  .nav-links a::after{ width:0; }
+  .theme-btn:hover{ color:var(--muted); border-color:var(--line); }
+  .intro-links a:hover{ color:inherit; border-color:var(--line); }
+  .view-work:hover{ opacity:1; }
+  .view-work:hover .arrow{ transform:none; }
+  .work-item:hover .work-head{ padding-left:0; }
+  .work-item:hover .work-name{ transform:none; color:var(--ink); }
+  .work-item:hover .work-context{ color:var(--muted); }
+  .work-item:hover .work-arrow{ opacity:0; transform:none; }
+  .work-item .work-arrow{ opacity:0; }
+  .work-item.expanded .work-name{ color:var(--accent); transform:none; }
+  .work-item.expanded .work-arrow{ opacity:1; transform:rotate(90deg); color:var(--accent); }
+  .work-links a:hover{ color:inherit; border-color:var(--line); }
+  .stack-row span:hover{ transform:none; border-color:var(--line); }
+  .contact-big:hover{ color:var(--ink); border-color:var(--line); }
+  .contact-socials a:hover{ color:var(--muted); }
+  .cg-cell:hover{ transform:none; }
+  .arc-demo:hover .arc-demo-overlay{ opacity:1; }
 }
