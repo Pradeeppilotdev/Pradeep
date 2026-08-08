@@ -42,8 +42,10 @@ function buildFallback(countMap) {
 export default function ContributionGraph() {
   const { theme } = useTheme()
   const ref = useRef(null)
+  const tipRef = useRef(null)
   const [weeks, setWeeks] = useState(null)
   const [total, setTotal] = useState(0)
+  const [tip, setTip] = useState(null)
   const accent = ACCENT[theme] || ACCENT.dark
   const [r, g, b] = hexToRgb(accent)
 
@@ -71,7 +73,8 @@ export default function ContributionGraph() {
           const alpha = val === 0 ? 0 : LEVELS[Math.min(val, 4) - 1]
           col.push({
             bg: val === 0 ? 'var(--line)' : `rgba(${r},${g},${b},${alpha})`,
-            title: val === 0 ? `${date.toDateString()}: no commits` : `${date.toDateString()}: ${val} commit${val === 1 ? '' : 's'}`,
+            date: date.toDateString(),
+            count: val,
           })
         }
         cells.push(col)
@@ -126,6 +129,13 @@ export default function ContributionGraph() {
 
   if (!weeks) return <div className="cg" ref={ref} aria-hidden="true" />
 
+  function showTip(cell, e) {
+    setTip({ x: e.clientX, y: e.clientY, date: cell.date, count: cell.count })
+  }
+  function hideTip() {
+    setTip(null)
+  }
+
   return (
     <div className="cg" ref={ref}>
       <div className="cg-head">
@@ -135,11 +145,36 @@ export default function ContributionGraph() {
         {weeks.map((col, wi) => (
           <div className="cg-col" key={wi} style={{ transitionDelay: `${Math.min(wi * 0.018, 0.9)}s` }}>
             {col.map((cell, di) => (
-              <div className="cg-cell" key={di} style={{ background: cell.bg }} title={cell.title} />
+              <div
+                className="cg-cell"
+                key={di}
+                style={{ background: cell.bg }}
+                onMouseEnter={e => showTip(cell, e)}
+                onMouseMove={e => showTip(cell, e)}
+                onMouseLeave={hideTip}
+              />
             ))}
           </div>
         ))}
       </div>
+
+      {tip &&
+        (() => {
+          const label = tip.count === 0 ? 'No commits' : `${tip.count} commit${tip.count === 1 ? '' : 's'}`
+          return (
+            <div
+              className="cg-tip"
+              ref={tipRef}
+              style={{
+                left: `${Math.min(tip.x + 14, window.innerWidth - 170)}px`,
+                top: `${tip.y - 10}px`,
+              }}
+            >
+              <span className="cg-tip-date">{tip.date}</span>
+              <span className="cg-tip-count">{label}</span>
+            </div>
+          )
+        })()}
     </div>
   )
 }
