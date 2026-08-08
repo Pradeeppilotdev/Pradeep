@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect } from 'react'
 import { Renderer, Program, Mesh, Triangle, Color } from 'ogl'
 
 const PAD = 20
@@ -93,7 +93,6 @@ const SpecularButton = ({
   const btnRef = useRef(null)
   const fxRef = useRef(null)
   const propsRef = useRef({})
-  const [isTouch, setIsTouch] = useState(false)
 
   propsRef.current = { radius, lineColor, baseColor, intensity, shineSize, shineFade, thickness, speed, followMouse, proximity, autoAnimate }
 
@@ -101,10 +100,6 @@ const SpecularButton = ({
     const btn = btnRef.current
     const fx = fxRef.current
     if (!btn || !fx) return
-
-    const coarse = window.matchMedia?.('(hover: none), (pointer: coarse)').matches ?? false
-    setIsTouch(coarse)
-    if (coarse) return // no WebGL on touch; rendered as a plain button
 
     const dpr = window.devicePixelRatio || 1
     const renderer = new Renderer({ alpha: true, premultipliedAlpha: true, antialias: true, dpr })
@@ -235,7 +230,7 @@ const SpecularButton = ({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={`specular-button specular-button--${size}${isTouch ? ' specular-button--touch' : ''}${className ? ` ${className}` : ''}`}
+      className={`specular-button specular-button--${size}${className ? ` ${className}` : ''}`}
       style={{
         '--sb-radius': `${radius}px`,
         '--sb-tint': tint,

@@ -199,17 +199,6 @@ nav .inner{ display:flex; align-items:center; justify-content:space-between; }
   z-index: 2;
 }
 
-/* Touch devices: clean accent button, no WebGL shine */
-.specular-button--touch{
-  background:var(--accent);
-  color:var(--bg);
-  box-shadow:none;
-  font-family:var(--font-mono);
-  font-size:0.78rem;
-  padding:9px 18px;
-}
-.specular-button--touch .specular-button__fx{ display:none; }
-
 .hero-name{
   margin-top:0;
   width:100%;
@@ -546,11 +535,12 @@ html.dark .project-logo[src*="basedeployer"]{ filter:invert(0); }
   .contact-sub{ font-size:13px; }
   .about p{ font-size:14px; }
   .intro-links{ gap:14px; font-size:12px; }
+  .intro-links a{ font-size:13px; line-height:2; padding-bottom:2px; }
   .hero-name{ margin-top:36px; }
   .statement-row{ grid-template-columns:1fr; }
   .nav-links{ gap:14px; }
   .specular-button--sm{ font-size:0.75rem; padding:8px 16px; }
-  .intro-links-row{ row-gap:12px; column-gap:16px; }
+  .intro-links-row{ flex-wrap:nowrap; column-gap:40px; row-gap:0; }
   .intro-links-row a{ order:1; }
   .intro-links-row .hire-me{ order:0; flex-basis:auto; }
   .hire-me .arrow{ display:none; }
@@ -564,10 +554,17 @@ html.dark .project-logo[src*="basedeployer"]{ filter:invert(0); }
   .stack-row span{ font-size:12px; padding:6px 10px; }
   .carousel, .arc-demo{ margin-bottom:14px; }
 }
+@media (max-width:420px){
+  .intro-links{ font-size:11px; }
+  .intro-links a{ font-size:11px; }
+  .intro-links-row{ column-gap:20px; }
+  .specular-button--sm{ font-size:0.68rem; padding:6px 12px; }
+}
 @media (hover:none), (pointer:coarse){
   .work-main{ flex-direction:column; align-items:flex-start; gap:4px; }
   .telegram-icon{ display:block; }
   .telegram-text{ display:none; }
+  .intro-links .telegram{ height:calc(2em + 3px); align-items:center; }
 }
 
 /* Reset sticky hover states on touch devices */
